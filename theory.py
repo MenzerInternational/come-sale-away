@@ -4,5 +4,8 @@ from bs4 import *
 html = urlopen("https://www.theory.com/mens-sale/")
 soup = BeautifulSoup(html, 'html.parser')
 
-for product in soup.find_all(class_='product-name'):   # Pulls tags by product name from 'html'
-    print(product.get_text())           # Strips tags from from products and converts to string
+for product in soup.find_all(class_='tile product-tile'):
+    item  = 'data-gtmtitle'
+    price = product.find(class_='price-sales')
+    print(product.get(item))
+    print(price.get_text())
